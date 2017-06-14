@@ -12,7 +12,16 @@ $(document).ready(function() {
         event.preventDefault();
         if(event.keyCode == 13) {
             let query = $('#searchquery').val();
-            console.log($('#searchquery').val());
+            
+            
+            $.ajax({
+                url: api+query+cb,
+                dataType: "jsonp",
+                success: function(response) {
+                    console.log(response.query.pages);
+                }
+            });
+            
         }
     });
     

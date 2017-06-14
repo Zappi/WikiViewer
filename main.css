@@ -4,7 +4,7 @@ body {
     font-family: "Open Sans Condensed";
     font-size: 18px;
     margin: 0;
-    background-color: darkgrey
+    background-color: darkgrey;
 }
 
 h1 {
@@ -26,7 +26,7 @@ input.placeholder {
 }
 
 input[type=text] {
-    background-color: darkgray;
+    background-color: darkgrey;
     color: black;
     width: 40%;
     box-sizing: border-box;
@@ -41,4 +41,18 @@ input[type=text] {
 
 ul {
     list-style-type: none;
+    margin-top: 50px;
+    text-align: center;
+}
+
+li {
+    padding: 45px;
+    margin-bottom: 10px;
+    background-color: aliceblue;
+    border: 1px solid black;
+}
+
+li:hover {
+    background-color: #c4c3c0;
+    border: 3px solid white;
 }

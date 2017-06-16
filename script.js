@@ -13,20 +13,25 @@ $(document).ready(function() {
         if(event.keyCode == 13) {
             let query = $('#searchquery').val();
             
+            var i = 1;
             
             $.ajax({
                 url: api+query+cb,
+                type:'GET',
+                contentType: 'application/json',
                 dataType: "jsonp",
                 success: function(response) {
-                    console.log(response.query.pages);
+                    var myStr = "";
+                    $.each(response.query.pages, function(i, pages) {
+                    $("ul").append('<li>'+this.title+'<br>'+this.extract+'</li>')
+                        
+                    }); 
                 }
             });
-            
         }
     });
-    
-    
-    
+            
+            
     $(".random-button").on('click', function() {
         window.open('https://en.wikipedia.org/wiki/Special:Random');
     });

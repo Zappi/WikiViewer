@@ -42,18 +42,33 @@ input[type=text] {
 ul {
     list-style-type: none;
     margin-top: 50px;
-    text-align: center;
 }
 
 li {
-    padding: 65px;
-    width: 90%;
-    margin-bottom: 10px;
+    text-decoration: none;
+    padding: 50px;
+    width: 50%;
+    margin: 10px 25%;
     background-color: aliceblue;
     border: 1px solid black;
 }
 
 li:hover {
     background-color: #c4c3c0;
+    padding: 50px;
+    width: 50%;
+    margin: 10px 25%;
     border: 3px solid white;
 }
+
+a {
+    color: dimgrey !important;
+}
+
+a:hover {
+    text-decoration: none;
+    display: block;
+}
+
+
+

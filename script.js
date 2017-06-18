@@ -1,16 +1,28 @@
 $(document).ready(function() {
     
     var results = [];
+
+    var searchDone = false;
     
+    var resultPage = 'https://en.wikipedia.org/?curid=';
     
     var api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
     var cb = '&callback=JSON_CALLBACK';
     
     
+    
     document.getElementById("searchquery")
-        .addEventListener("keyup", function(event){
-        event.preventDefault();
+        .addEventListener("keydown", function(event){
+        
         if(event.keyCode == 13) {
+            
+            if(searchDone) {
+                $("li").empty().remove();
+                
+            }
+             
+            searchDone = true;
+            
             let query = $('#searchquery').val();
             
             var i = 1;
@@ -23,14 +35,14 @@ $(document).ready(function() {
                 success: function(response) {
                     var myStr = "";
                     $.each(response.query.pages, function(i, pages) {
-                    $("ul").append('<li>'+this.title+'<br>'+this.extract+'</li>')
-                        
-                    }); 
+                    var searchResultURL = resultPage+this.pageid;
+                $("ul").append('<li><a href='+searchResultURL+' <b>'+this.title+'</b><br>'+this.extract+'</a></li>')
+                }); 
                 }
             });
         }
     });
-            
+       
             
     $(".random-button").on('click', function() {
         window.open('https://en.wikipedia.org/wiki/Special:Random');

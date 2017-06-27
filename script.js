@@ -1,8 +1,6 @@
 $(document).ready(function() {
     
     var results = [];
-
-    var searchDone = false;
     
     var resultPage = 'https://en.wikipedia.org/?curid=';
     
@@ -10,33 +8,20 @@ $(document).ready(function() {
     var cb = '&callback=JSON_CALLBACK';
 
     
-    document.getElementById("searchquery").addEventListener("keydown", function(event){
-        
-            //vaihda letiksi    
-        var query = $('#searchquery').val();
-        
-        if(event.keyCode == 13) {
-            doSearch(query);
-        } else {
-            //doLiveSearch(query);
-            return;
-        }
-            
+    document.getElementById("searchquery").addEventListener("keyup", function(){
+        doSearch();
     });
     
     
-    function doSearch(query) {
+    function doSearch() {
             
-        if(searchDone) {
-                $("li").empty().remove();
-                
-            }
-             
-            searchDone = true;
-            
-            
+            var query = $("#searchquery").val();
+            $("li").empty().remove();
+        
+            console.log(query);
             var i = 1;
             
+            if(query !== "") {
             $.ajax({
                 url: api+query+cb,
                 type:'GET',
@@ -50,11 +35,10 @@ $(document).ready(function() {
                 }); 
                 }
             });
+            }
+            
     }
-    
-    function doLiveSearch(query) {
-        
-    }
+
        
             
     $(".random-button").on('click', function() {

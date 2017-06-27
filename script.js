@@ -8,22 +8,32 @@ $(document).ready(function() {
     
     var api = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
     var cb = '&callback=JSON_CALLBACK';
+
     
-    
-    
-    document.getElementById("searchquery")
-        .addEventListener("keydown", function(event){
+    document.getElementById("searchquery").addEventListener("keydown", function(event){
+        
+            //vaihda letiksi    
+        var query = $('#searchquery').val();
         
         if(event.keyCode == 13) {
+            doSearch(query);
+        } else {
+            //doLiveSearch(query);
+            return;
+        }
             
-            if(searchDone) {
+    });
+    
+    
+    function doSearch(query) {
+            
+        if(searchDone) {
                 $("li").empty().remove();
                 
             }
              
             searchDone = true;
             
-            let query = $('#searchquery').val();
             
             var i = 1;
             
@@ -36,12 +46,15 @@ $(document).ready(function() {
                     var myStr = "";
                     $.each(response.query.pages, function(i, pages) {
                     var searchResultURL = resultPage+this.pageid;
-                $("ul").append('<li><a href='+searchResultURL+' <b>'+this.title+'</b><br>'+this.extract+'</a></li>')
+                $(".result-listing").append('<li><a href='+searchResultURL+' <b>'+this.title+'</b><br>'+this.extract+'</a></li>')
                 }); 
                 }
             });
-        }
-    });
+    }
+    
+    function doLiveSearch(query) {
+        
+    }
        
             
     $(".random-button").on('click', function() {
